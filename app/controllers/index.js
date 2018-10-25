@@ -3,21 +3,29 @@ var btnJson;
 
 btnJson = Ti.UI.createButton({
 	title : 'Request Json',
-	color : 'blue',
+	color : 'white',
 	width : '180dp',
 	height : '70dp',
-	bottom: '20%'
+	bottom : '20%',
+	backgroundColor:'black'
 });
 
 $.index.add(btnJson);
 
-
 btnJson.addEventListener('click', function(e) {
+	if($.txtUser.getValue() == "" || $.txtUser.getValue() == "" ){
+		alert('User and Password required.. ');
+	}
+	
+
 	xhr = Ti.Network.createHTTPClient({
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			Ti.API.info(result);
 			alert('success' + JSON.stringify(result));
+
+			var users = Alloy.createController('users').getView();
+			users.open();
 		},
 		onsendstream : function(e) {
 			Ti.API.info('Progress ' + e.progress);

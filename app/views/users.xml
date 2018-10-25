@@ -1,4 +1,7 @@
 <Alloy>
-	<View class="container">
-	</View>
+	<Window>
+		<View id="viewMain" class="container">
+			<View id="viewInfo"></View>
+		</View>
+	</Window>
 </Alloy>
