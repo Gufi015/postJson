@@ -1,0 +1,8 @@
+<Alloy>
+	<Window class="container">
+		<Label top="2%">User</Label>
+		<TextField borderRadius="2" borderColor="blue" width="80%" height="10%" top="8%" id="txtUser" hintText="User" color="green"></TextField>
+		<Label top="20%">Pass</Label>
+		<TextField borderRadius="2"  borderColor="blue" width="80%" height="10%" id="txtPass" hintText="Password" top="26%" color="purple"></TextField>
+	</Window>
+</Alloy>
