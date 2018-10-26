@@ -21,7 +21,7 @@ btnJson.addEventListener('click', function(e) {
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			Ti.API.info(JSON.stringify(result));
-			alert('success' + JSON.stringify(result));
+			//alert('success' + JSON.stringify(result));
 			
 			for(var i = 0; i<result.response.users.length;i++){
 				var dialogo = Ti.UI.createAlertDialog({
@@ -48,12 +48,14 @@ btnJson.addEventListener('click', function(e) {
 		timeout : 5000,
 	});
 
-	xhr.open('POST', 'http://api.cloud.appcelerator.com/v1/users/login.json?key=39CfszDc4IxFppvqRyykQDgVPyuPhed2');
+	xhr.open('POST', 'http://api.cloud.appcelerator.com/v1/users/login.json?key=rkqPXBTWooHrEObnb7hQaYpLFgi89GLM&');
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send({
 		login : $.txtUser.getValue(),
 		password : $.txtPass.getValue()
 	});
+
+
 });
 
 $.index.open();
