@@ -1,19 +1,34 @@
 var xhr;
-var btnJson;
+var btnJson, btnGet;
 
 btnJson = Ti.UI.createButton({
 	title : 'Request Json',
 	color : 'white',
 	width : '180dp',
 	height : '70dp',
-	bottom : '20%',
+	bottom : '30%',
+	backgroundColor:'black'
+});
+$.index.add(btnJson);
+
+btnGet = Ti.UI.createButton({
+	title : 'Request Get users',
+	color : 'white',
+	width : '180dp',
+	height : '70dp',
+	bottom : '15%',
 	backgroundColor:'black'
 });
 
-$.index.add(btnJson);
+$.index.add(btnGet);
+
+btnGet.addEventListener('click', function(e){
+	var getUsers = Alloy.createController('getUsers').getView();
+	getUsers.open();
+});
 
 btnJson.addEventListener('click', function(e) {
-	if($.txtUser.getValue() == "" || $.txtUser.getValue() == "" ){
+	if($.txtUser.getValue() == "" || $.txtPass.getValue() == "" ){
 		alert('User and Password required.. ');
 	}
 	
@@ -39,10 +54,10 @@ btnJson.addEventListener('click', function(e) {
 			Ti.API.info('Progress ' + e.progress);
 		},
 		onerror : function(e) {
-			Ti.UI.createAlertDialog({
-				title : 'Error',
-				message : e.error
-			}).show();
+			// Ti.UI.createAlertDialog({
+				// title : 'Error',
+				// message : e.error
+			// }).show();
 			Ti.API.info('IN ERROR ' + e.error);
 		},
 		timeout : 5000,

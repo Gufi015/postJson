@@ -1,4 +1,9 @@
 <Alloy>
-	<View class="container">
-	</View>
+	<Window>
+		<ScrollView id="scroll" showVerticalScrollIndicator="true" layout="vertical">
+			<View id="viewMain" class="container" layout=""verical>
+				<View id="viewInfo" layout="vertical"></View>
+			</View>
+		</ScrollView>
+	</Window>
 </Alloy>
