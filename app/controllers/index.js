@@ -1,5 +1,6 @@
 var xhr;
-var btnJson, btnGet;
+var btnJson,
+    btnGet;
 
 btnJson = Ti.UI.createButton({
 	title : 'Request Json',
@@ -7,7 +8,7 @@ btnJson = Ti.UI.createButton({
 	width : '180dp',
 	height : '70dp',
 	bottom : '30%',
-	backgroundColor:'black'
+	backgroundColor : 'black'
 });
 $.index.add(btnJson);
 
@@ -17,46 +18,48 @@ btnGet = Ti.UI.createButton({
 	width : '180dp',
 	height : '70dp',
 	bottom : '15%',
-	backgroundColor:'black'
+	backgroundColor : 'black'
 });
 
 $.index.add(btnGet);
 
-btnGet.addEventListener('click', function(e){
+btnGet.addEventListener('click', function(e) {
 	var getUsers = Alloy.createController('getUsers').getView();
 	getUsers.open();
 });
 
 btnJson.addEventListener('click', function(e) {
-	if($.txtUser.getValue() == "" || $.txtPass.getValue() == "" ){
+	if ($.txtUser.getValue() == "" || $.txtPass.getValue() == "") {
 		alert('User and Password required.. ');
 	}
-	
+
 	xhr = Ti.Network.createHTTPClient({
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
 			Ti.API.info(JSON.stringify(result));
 			//alert('success' + JSON.stringify(result));
-			
-			for(var i = 0; i<result.response.users.length;i++){
+
+			for (var i = 0; i < result.response.users.length; i++) {
 				var dialogo = Ti.UI.createAlertDialog({
-					title: result.response.users[i].username,
-					message: result.response.users[i].email
+					title : result.response.users[i].username,
+					message : result.response.users[i].email
 				});
 				dialogo.show();
 				$.index.add(dialogo);
 			}
+			setTimeout(function() {
+				var users = Alloy.createController('users').getView();
+				users.open();
+			},5000);
 
-			var users = Alloy.createController('users').getView();
-			users.open();
 		},
 		onsendstream : function(e) {
 			Ti.API.info('Progress ' + e.progress);
 		},
 		onerror : function(e) {
 			// Ti.UI.createAlertDialog({
-				// title : 'Error',
-				// message : e.error
+			// title : 'Error',
+			// message : e.error
 			// }).show();
 			Ti.API.info('IN ERROR ' + e.error);
 		},
@@ -69,7 +72,6 @@ btnJson.addEventListener('click', function(e) {
 		login : $.txtUser.getValue(),
 		password : $.txtPass.getValue()
 	});
-
 
 });
 
