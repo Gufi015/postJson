@@ -17,12 +17,20 @@ btnJson.addEventListener('click', function(e) {
 		alert('User and Password required.. ');
 	}
 	
-
 	xhr = Ti.Network.createHTTPClient({
 		onload : function(e) {
 			var result = JSON.parse(this.responseText);
-			Ti.API.info(result);
+			Ti.API.info(JSON.stringify(result));
 			alert('success' + JSON.stringify(result));
+			
+			for(var i = 0; i<result.response.users.length;i++){
+				var dialogo = Ti.UI.createAlertDialog({
+					title: result.response.users[i].username,
+					message: result.response.users[i].email
+				});
+				dialogo.show();
+				$.index.add(dialogo);
+			}
 
 			var users = Alloy.createController('users').getView();
 			users.open();
